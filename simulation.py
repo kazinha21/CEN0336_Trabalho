@@ -37,9 +37,9 @@ def simular_crescimento(dados, N, tempo_de_simulacao = 30, temperatura = 0, linh
             temperatura = new_temp
         
         if temperatura < temps[1]: # se a temperatura for menor que a do meio
-            new_r = temperatura * ((float(dados[linhagem][str(temps[1])]) - float(dados[linhagem][str(temps[0])])) / (temps[1] - temps[0]) + float(dados[linhagem][str(temps[0])]))
+            new_r = (temps[1] - temperatura) * ((float(dados[linhagem][str(temps[1])]) - float(dados[linhagem][str(temps[0])])) / (temps[1] - temps[0]) + float(dados[linhagem][str(temps[0])]))
         elif temperatura > temps[1]: # se a temperatura for maior que a do meio
-            new_r = temperatura * ((float(dados[linhagem][str(temps[2])]) - float(dados[linhagem][str(temps[1])])) / (temps[2] - temps[1]) + float(dados[linhagem][str(temps[1])]))
+            new_r = (temperatura - temps[1]) * ((float(dados[linhagem][str(temps[2])]) - float(dados[linhagem][str(temps[1])])) / (temps[2] - temps[1]) + float(dados[linhagem][str(temps[1])]))
         else:
             new_r = float(dados[linhagem][str(temps[1])])
         
