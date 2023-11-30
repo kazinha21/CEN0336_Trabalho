@@ -12,19 +12,6 @@ import matplotlib.pyplot as plt
 import math
 import random
 
-def simulate_growth(N, duration, temp_changes, max_target_pop, control_duration, strain = ""):
-    ## strain = "" significa que o parâmetro é opcional e o valor padrão é uma string vazia
-    """ simulate_growth
-    Essa função vai receber os seguintes parâmetros:
-    - Dados: dicionário com os dados da tabela
-    - N: população inicial
-    - tempo_de_simulacao: duração da simulação
-    - temp_changes: dicionário com as mudanças de temperatura
-    - max_target_pop: população máxima
-    - control_tempo_de_simulacao: duração do controle
-    - linhagem: variedade (pode ou não ser incluído)
-"""
-
 def simular_crescimento(dados, N, tempo_de_simulacao = 30, temperatura = 0, linhagem = ""):
     # pegar o valor de r da tabela e a população inicial, iniciar variáveis (armazenar em variáveis os resultados que queremos)
     resultados = [] # criar lista dos resultados
@@ -50,9 +37,9 @@ def simular_crescimento(dados, N, tempo_de_simulacao = 30, temperatura = 0, linh
             temperatura = new_temp
         
         if temperatura < temps[1]: # se a temperatura for menor que a do meio
-            new_r = (temps[1] - temperatura) * (float(dados[linhagem][str(temps[1])]) - float(dados[linhagem][str(temps[0])])) / (temps[1] - temps[0]) + float(dados[linhagem][str(temps[0])])
+            new_r = temperatura * ((float(dados[linhagem][str(temps[1])]) - float(dados[linhagem][str(temps[0])])) / (temps[1] - temps[0]) + float(dados[linhagem][str(temps[0])]))
         elif temperatura > temps[1]: # se a temperatura for maior que a do meio
-            new_r = (float(dados[linhagem][str(temps[2])]) - float(dados[linhagem][str(temps[1])])) / (temps[2] - temps[1]) + float(dados[linhagem][str(temps[1])])
+            new_r = temperatura * ((float(dados[linhagem][str(temps[2])]) - float(dados[linhagem][str(temps[1])])) / (temps[2] - temps[1]) + float(dados[linhagem][str(temps[1])]))
         else:
             new_r = float(dados[linhagem][str(temps[1])])
         
@@ -95,8 +82,6 @@ def main(): # função principal
             for line in file: 
                 dados = line.split() # separar os dados da linha
                 try: # a primeira coluna é uma string e informa linhagem, as próximas colunas são float
-                    if not dados[0].isalpha(): # verificar se o primeiro item é uma string
-                        raise ValueError
                     float(dados[1]) # verificar se o segundo item é um número
                 except(ValueError):
                     print("A primeira coluna deve ser uma string e as próximas colunas devem ser números")
