@@ -28,6 +28,11 @@ def simular_crescimento(dados, N, tempo_de_simulacao = 30, temperatura = 0, linh
 
 
     for t in range(tempo_de_simulacao):        
+
+        # Escolhendo uma nova temperatura e calculando o novo valor de r #
+        # o r será considerado como linear entre os valores de temperatura, logo, o valor de r será calculado por interpolação linear.
+        # A temperatura será truncada para os valores de temperatura fornecidos nos dados.
+
         new_temp = temperatura + random.uniform(-1,1) # gerar um novo valor de temperatura
         if new_temp > temps[-1]: # se a temperatura for maior que a máxima
             temperatura = temps[-1]
