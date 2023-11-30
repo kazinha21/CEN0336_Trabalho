@@ -50,8 +50,8 @@ def simular_crescimento(dados, N, tempo_de_simulacao = 30, temperatura = 0, linh
         resultados.append(pop) # adicionar o novo número populacional aos resultados
         rs.append(r) # adicionar o novo valor de r aos resultados
         ts.append(temperatura) # adicionar a nova temperatura aos resultados
-    
-    with open("out.txt", "w") as file:
+     
+    with open("out.txt", "w") as file: # salvando os resultados em um arquivo txt
         file.write("Tempo\tPopulação\tR\tTemps\n")
         for t in range(len(resultados)):
             file.write(str(t) + "\t" + str(resultados[t]) + "\t" + str(rs[t]) + "\t" + str(ts[t]) + "\n")
